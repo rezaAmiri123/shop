@@ -68,3 +68,5 @@ doc-*
 #static
 *.sqlite
 tmp/
+
+static1
