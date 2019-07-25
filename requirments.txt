@@ -4,3 +4,4 @@ django-parler==1.9.2
 django-localflavor==2.2
 celery==4.3.0
 braintree==3.55.0
+django-weasyprint==0.5.4
