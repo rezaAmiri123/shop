@@ -19,4 +19,4 @@ class ProductAdmin(TranslatableAdmin):
     list_editable = ['price', 'available']
 
     def get_prepopulated_fields(self, request, obj=None):
-        return {'slug', ('name',)}
+            return {'slug': ('name',)}
