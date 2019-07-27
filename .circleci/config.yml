@@ -27,7 +27,8 @@ jobs:
       - save_cache:
           paths:
             - ./venv
-            key: v1-dependencies-{{ checksum "requirments.txt" }}
+          key: v1-dependencies-{{ checksum "requirments.txt" }}
+
       - run:
           name: run tests
           command: |
