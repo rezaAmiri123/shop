@@ -1,0 +1,66 @@
+version: '3'
+services:
+
+  djangoapp:
+    # build: .
+    image: myshop
+    command: sh run/run_web.sh
+    volumes:
+      - .:/opt/services/djangoapp/src
+      - static_volume:/opt/services/djangoapp/src/project/static
+      - media_volume:/opt/services/djangoapp/src/project/media
+    networks:
+      - nginx_network
+      - database1_network
+      - redis_network
+    depends_on:
+      - database1
+      - redis
+
+  database1: # <-- IMPORTANT: same name as in DATABASE setting, otherwise won't find the database!
+    image: postgres
+    env_file: # <-- we use the previously defined values
+      - config/db/database1_env
+    networks: # <-- connect to the bridge
+      - database1_network
+    volumes:
+      - database1_volume:/var/lib/postgresql/data
+
+  nginx:
+    image: nginx
+    ports:
+      - 80:80
+    volumes:
+      - ./config/nginx/conf.d:/etc/nginx/conf.d
+      - static_volume:/opt/services/djangoapp/src/project/static
+      - media_volume:/opt/services/djangoapp/src/project/media
+    depends_on:
+      - djangoapp
+    networks:
+      - nginx_network
+
+  redis:
+    image: redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_volume:/data
+    command: redis-server --appendonly yes
+    networks:
+      - redis_network
+
+
+networks:
+  nginx_network:
+    driver: bridge
+  database1_network:
+    driver: bridge
+  redis_network:
+    driver: bridge
+
+volumes:
+  database1_volume:
+  static_volume:
+  media_volume:
+  redis_volume:
+

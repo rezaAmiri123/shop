@@ -25,7 +25,7 @@ SECRET_KEY = '(e1c6&jbk0rxtyx_r9@lvb%yratrw$@#tp3t^)6z91cfk$rn2r'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -128,8 +128,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static1'),
-                    os.path.join(BASE_DIR, 'static'))
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+# STATICFILES_DIRS = (# os.path.join(BASE_DIR, 'static1'),
+#                    os.path.join(BASE_DIR, 'static'),)
 
 from django.utils.translation import gettext_lazy as _
 
@@ -174,6 +175,6 @@ PARLER_LANGUAGES = {
     }
 }
 
-REDIS_HOST = 'localhost'
+REDIS_HOST = 'redis'
 REDIS_PORT = 6379
 REDIS_DB = 1
