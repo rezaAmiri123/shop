@@ -4,4 +4,4 @@
 # sleep 10
 
 cd project
-celery worker -A config
+celery worker -A config -l info

@@ -13,8 +13,6 @@ services:
       - nginx_network
       - database1_network
       - redis_network
-      - celery_network
-      - rabbitmq_network
     depends_on:
       - database1
       - redis
@@ -25,12 +23,11 @@ services:
     # build: .
     image: myshop
     command: sh run/run_celery.sh
-    volumes:
+    # volumes:
             #- .:/opt/services/djangoapp/src
-      - static_volume:/opt/services/djangoapp/src/project/static
-      - media_volume:/opt/services/djangoapp/src/project/media
+            #- static_volume:/opt/services/djangoapp/src/project/static
+            #- media_volume:/opt/services/djangoapp/src/project/media
     networks:
-      - celery_network
       - rabbitmq_network
     depends_on:
       - rabbitmq
@@ -75,7 +72,6 @@ services:
       - "15672:15672"
     networks:
       - rabbitmq_network
-      - celery_network
     volumes:
       - 'rabbitmq_volume:/data'
         
@@ -86,8 +82,6 @@ networks:
   database1_network:
     driver: bridge
   redis_network:
-    driver: bridge
-  celery_network:
     driver: bridge
   rabbitmq_network:
     driver: bridge
