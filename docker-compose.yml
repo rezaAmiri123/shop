@@ -13,9 +13,28 @@ services:
       - nginx_network
       - database1_network
       - redis_network
+      - celery_network
+      - rabbitmq_network
     depends_on:
       - database1
       - redis
+      - worker
+
+  
+  worker:
+    # build: .
+    image: myshop
+    command: sh run/run_celery.sh
+    volumes:
+            #- .:/opt/services/djangoapp/src
+      - static_volume:/opt/services/djangoapp/src/project/static
+      - media_volume:/opt/services/djangoapp/src/project/media
+    networks:
+      - celery_network
+      - rabbitmq_network
+    depends_on:
+      - rabbitmq
+
 
   database1: # <-- IMPORTANT: same name as in DATABASE setting, otherwise won't find the database!
     image: postgres
@@ -49,6 +68,17 @@ services:
     networks:
       - redis_network
 
+  rabbitmq:
+    image: "rabbitmq"
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    networks:
+      - rabbitmq_network
+      - celery_network
+    volumes:
+      - 'rabbitmq_volume:/data'
+        
 
 networks:
   nginx_network:
@@ -57,10 +87,14 @@ networks:
     driver: bridge
   redis_network:
     driver: bridge
+  celery_network:
+    driver: bridge
+  rabbitmq_network:
+    driver: bridge
 
 volumes:
   database1_volume:
   static_volume:
   media_volume:
   redis_volume:
-
+  rabbitmq_volume:
