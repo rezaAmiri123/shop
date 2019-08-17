@@ -19,6 +19,8 @@ This project has been covered some section, for example:
 
 8 - redis for cache server
 
+9 - gunicron is used for wsgi server
+
 The backend section covers some section, for example:
 
 1 - The cart app is used for work with shop cart that works with session framework
