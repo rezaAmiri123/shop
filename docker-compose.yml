@@ -66,7 +66,7 @@ services:
       - redis_network
 
   rabbitmq:
-    image: "rabbitmq"
+    image: rabbitmq:3-management
     ports:
       - "5672:5672"
       - "15672:15672"
@@ -74,6 +74,16 @@ services:
       - rabbitmq_network
     volumes:
       - 'rabbitmq_volume:/data'
+
+        #    hostname: rabbit
+        #    image: rabbitmq:3-management
+        #    environment:
+        #      - RABBITMQ_DEFAULT_USER=admin
+        #      - RABBITMQ_DEFAULT_PASS=mypass
+        #    ports:
+        #      - "5672:5672"  
+        #      - "15672:15672"  # here, we can access rabbitmq management plugin
+        #        
         
 
 networks:
