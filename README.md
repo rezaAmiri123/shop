@@ -21,8 +21,8 @@ This project has been covered some section, for example:
 
 The backend section covers some section, for example:
 
-1 - cart app to work with shop cart that works with session framework
+1 - The cart app is used for work with shop cart that works with session framework
 
-2 - gettext to handle translation 
+2 - gettext is used for handle translation 
 
 The project is't complete and I'm working to add something to that

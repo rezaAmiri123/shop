@@ -74,6 +74,9 @@ jobs:
             # all exposed ports from `contacts` available on `localhost` in this new container
             # docker run --network container:contacts \
             #  appropriate/curl --retry 10 --retry-delay 1 --retry-connrefused http://localhost:8080/contacts/test
+            # we need to install some library to use weasyprint 
+            apt-get update -y
+            apt-get install build-essential python3-dev python3-pip python3-setuptools python3-wheel python3-cffi libcairo2 libpango-1.0-0 libpangocairo-1.0-0 libgdk-pixbuf2.0-0 libffi-dev shared-mime-info
             docker build . -t myshop
             docker-compose run  djangoapp /bin/bash -c "cd project;python manage.py  migrate;python manage.py collectstatic  --no-input;coverage run --source='.'  manage.py test --settings=config.settings;coverage report"
             # docker-compose run  djangoapp /bin/bash -c "cd project;python manage.py collectstatic  --no-input"
