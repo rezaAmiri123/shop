@@ -3,6 +3,7 @@ from django.conf import settings
 from .models import Product
 
 # connect to redis
+
 r = redis.StrictRedis(host=settings.REDIS_HOST,
                       port=settings.REDIS_PORT,
                       db=settings.REDIS_DB)

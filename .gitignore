@@ -70,3 +70,5 @@ doc-*
 tmp/
 
 static1
+project/static/*
+

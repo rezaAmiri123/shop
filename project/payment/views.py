@@ -1,4 +1,4 @@
-import braintree #, weasyprint
+import braintree, weasyprint
 from django.shortcuts import render, redirect, get_object_or_404
 from orders.models import Order
 from django.template.loader import render_to_string
@@ -41,10 +41,10 @@ def payment_process(request):
             html = render_to_string('orders/order/pdf.html', {'order': order})
             out = BytesIO()
 
-            # stylesheets = [weasyprint.CSS(settings.STATIC_ROOT + 'css/pdf.css')]
+            stylesheets = [weasyprint.CSS(settings.STATIC_ROOT + 'css/pdf.css')]
             # stylesheets = [weasyprint.CSS('css/pdf.css')]
-            # weasyprint.HTML(string=html).write_pdf(out,
-            #                                       stylesheets=stylesheets)
+            weasyprint.HTML(string=html).write_pdf(out,
+                                                   stylesheets=stylesheets)
 
             # attach PDF file
             email.attach('order_{}.pdf'.format(order.id),
