@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'rosetta',
     'parler',
     'localflavor',
+    'django_celery_results',
 ]
 
 MIDDLEWARE = [
@@ -178,3 +179,7 @@ PARLER_LANGUAGES = {
 REDIS_HOST = 'redis'
 REDIS_PORT = 6379
 REDIS_DB = 1
+
+CELERY_BROKER_URL= 'pyamqp://rabbitmq:5672'
+CELERY_RESULT_BACKEND = 'django-db'
+

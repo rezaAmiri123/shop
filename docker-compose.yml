@@ -17,7 +17,7 @@ services:
     depends_on:
       - database1
       - redis
-      - worker
+      - rabbitmq 
 
   
   worker:
@@ -67,7 +67,7 @@ services:
       - redis_network
 
   rabbitmq:
-    image: rabbitmq:3-management
+    image: rabbitmq
     ports:
       - "5672:5672"
       - "15672:15672"
@@ -95,7 +95,6 @@ networks:
   redis_network:
     driver: bridge
   rabbitmq_network:
-    driver: bridge
 
 volumes:
   database1_volume:

@@ -54,19 +54,45 @@ class OrderTestCase(TestCase):
         user_data = self.get_user_data()
         User.objects.create_user(**user_data)
 
+        coup1 = self.get_coupon_data()
+        coupon1 = Coupon.objects.create(**coup1)
+        ord1 = self.get_order_data(coupon=coupon1)
+        Order.objects.create(**ord1)
+
+
     def test_order_create(self):
+
+
+
         path = reverse('orders:order_create')
         resp = self.client.get(path)
         self.assertEqual(resp.status_code, 200)
 
-        coup1 = self.get_coupon_data()
-        coupon1 = Coupon.objects.create(**coup1)
-        ord1 = self.get_order_data(coupon=coupon1)
-        resp = self.client.post(path, ord1)
+        coup2 = self.get_coupon_data(2)
+        coupon2 = Coupon.objects.create(**coup2)
+        ord2 = self.get_order_data(coupon=coupon2)
+        # Order.objects.create(**ord1)
+
+        resp = self.client.post(path, ord2)
         self.assertEqual(resp.status_code, 302)
-        print(resp.status_code)
-        print(resp.content)
         # self.assertContains(resp, ord1['email'])
+
+    def test_admin_order_detail(self):
+        ord1 = self.get_order_data()
+        order1 = Order.objects.get(email=ord1['email'])
+        self.login()
+        path = reverse('orders:admin_order_detail', args=[order1.id])
+        resp = self.client.get(path)
+        self.assertEqual(resp.status_code, 200)
+
+    def test_order_pdf(self):
+        ord1 = self.get_order_data()
+        order1 = Order.objects.get(email=ord1['email'])
+        self.login()
+        path = reverse('orders:admin_order_pdf', args=[order1.id])
+        resp = self.client.get(path)
+        self.assertEqual(resp.status_code, 200)
+
 
 
 
