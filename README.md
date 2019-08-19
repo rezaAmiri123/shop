@@ -34,4 +34,9 @@ The backend section covers some section, for example:
 
 The project is't complete and I'm working to add something to that
 
+project in docker mode can be running by below way:
 
+$ docker build . -t myshop
+$ docker-compose up
+
+ 
