@@ -18,6 +18,7 @@ services:
       - database1
       - redis
       - rabbitmq 
+      - worker
 
   
   worker:

@@ -1,4 +1,4 @@
-This project has being developed for test that I'm learning.
+This project has being developed for test what I'm learning.
 It is important for me to learn Django framework.
 
 This project has been covered some section, for example:
@@ -27,4 +27,11 @@ The backend section covers some section, for example:
 
 2 - gettext is used for handle translation 
 
+3 - coupon app is used for set in payment process
+
+4 - payment app is using braintree to pay for product
+
+
 The project is't complete and I'm working to add something to that
+
+
