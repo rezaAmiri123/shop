@@ -21,6 +21,8 @@ This project has been covered some section, for example:
 
 9 - gunicron is used for wsgi server
 
+10 - CircleCI is used for CI process
+
 The backend section covers some section, for example:
 
 1 - The cart app is used for work with shop cart that works with session framework
