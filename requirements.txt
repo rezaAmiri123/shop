@@ -1,4 +1,4 @@
-Django==2.2.4
+Django==2.2.18
 django-rosetta==0.9.3
 django-parler==1.9.2
 django-localflavor==2.2
