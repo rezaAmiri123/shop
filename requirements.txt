@@ -10,4 +10,4 @@ gunicorn==19.9.0
 psycopg2-binary==2.8.3
 cairocffi==1.0.2
 coverage==4.5.4
-django-celery-results==1.1.2
+django-celery-results==2.4.0
